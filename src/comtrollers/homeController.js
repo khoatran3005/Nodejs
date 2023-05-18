@@ -2,20 +2,7 @@ const connection = require('../config/database')
 
 const getHomepage = (req, res) => {
 
-    let user = [];
-
-    connection.query(
-        'SELECT * FROM Users u',
-        function (err, results, fields) {
-            user = results;
-            console.log(results);
-
-            console.log(user);
-            res.send(JSON.stringify(user));
-        }
-
-
-    );
+    return res.render("homepage.ejs")
 }
 
 const getABC = (req, res) => {
