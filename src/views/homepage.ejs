@@ -53,26 +53,7 @@
 
             </tr>
 
-            <!-- <% for (var i=0; i < listUsers.length; i++) { %>
-                <tr>
-                    <td>
-                        <%= listUsers[i].id %>
-                    </td>
-                    <td>
-                        <%= listUsers[i].email %>
-                    </td>
-                    <td>
-                        <%= listUsers[i].name %>
-                    </td>
-                    <td>
-                        <%= listUsers[i].city %>
-                    </td>
-                    <td>
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </td>
-                </tr>
-                <% } %> -->
+
 
             <% listUsers.forEach(function(user) { %>
                 <tr>
@@ -89,7 +70,7 @@
                         <%= user.city %>
                     </td>
                     <td>
-                        <button>Edit</button>
+                        <a href="/update">Edit</a>
                         <button>Delete</button>
                     </td>
                 </tr>
