@@ -17,9 +17,16 @@ configViewEngine(app);
 
 app.use('/', webRoutes);
 
-connection();
+(async () => {
+    try {
+        await connection();
+        app.listen(port, hostname, () => {
+            console.log(`Backend app listening on port ${port}`)
+        })
+    } catch (error) {
+        console.log('error connect to db')
+    }
+})()
 
-app.listen(port, hostname, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+
 
