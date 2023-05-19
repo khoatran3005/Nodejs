@@ -27,7 +27,7 @@ const postCreateUser = async (req, res) => {
         city: city
     })
 
-    res.send('Create user sucess!');
+    res.redirect('/');
 }
 
 const getCreatePage = (req, res) => {
@@ -54,12 +54,15 @@ const postUpdateUser = async (req, res) => {
 
 const postDeleteUser = async (req, res) => {
     const userId = req.params.id
-    let user = await getUserById(userId);
+    let user = await User.findById(userId).exec();;
     res.render('delete.ejs', { userEdit: user });
 }
 
-const postHandleRemoveUser = (req, res) => {
-    res.send('Delete user sucess!');
+const postHandleRemoveUser = async (req, res) => {
+    let userId = req.body.userId;
+
+    await User.deleteOne({ _id: userId });
+    res.redirect('/');
 }
 
 module.exports = {
