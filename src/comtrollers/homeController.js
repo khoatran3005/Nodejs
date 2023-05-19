@@ -3,7 +3,7 @@ const { getAllUsers, getUserById, updateUserById } = require('../services/CRUDSe
 
 const User = require('../models/user')
 const getHomepage = async (req, res) => {
-    let result = [];
+    let result = await User.find({});
     return res.render("homepage.ejs", { listUsers: result })
 }
 
@@ -30,14 +30,13 @@ const postCreateUser = async (req, res) => {
     res.send('Create user sucess!');
 }
 
-
 const getCreatePage = (req, res) => {
     res.render('create.ejs')
 }
 
 const getUpdatePage = async (req, res) => {
     const userId = req.params.id
-    let user = await getUserById(userId);
+    let user = await User.findById(userId).exec();;
     res.render('edit.ejs', { userEdit: user });
 }
 
@@ -48,8 +47,8 @@ const postUpdateUser = async (req, res) => {
     let name = req.body.myname;
     let city = req.body.city;
 
-    await updateUserById(email, name, city, userId)
-
+    // await updateUserById(email, name, city, userId)
+    await User.updateOne({ _id: userId }, { email: email, name: name, city: city })
     res.redirect('/');
 }
 
