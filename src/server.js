@@ -3,6 +3,7 @@ const express = require('express');
 const configViewEngine = require('./config/viewEngine')
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
+const mongoose = require('mongoose');
 
 const app = express()
 const port = process.env.PORT || 8888;
@@ -16,6 +17,14 @@ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 configViewEngine(app);
 
 app.use('/', webRoutes);
+
+const kittySchema = new mongoose.Schema({
+    name: String
+});
+
+const Kitten = mongoose.model('Kitten', kittySchema);
+const cat = new Kitten({ name: 'Khoa cat' });
+cat.save();
 
 (async () => {
     try {
