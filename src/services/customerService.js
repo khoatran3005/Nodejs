@@ -45,5 +45,14 @@ module.exports = {
             return null;
         }
 
+    },
+    deleteACustomerService: async (userId) => {
+        try {
+            let result = await Customer.deleteById(userId)
+            return result;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
     }
 }
