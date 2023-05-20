@@ -8,12 +8,12 @@ const customerSchema = new mongoose.Schema({
     address: String,
     phone: String,
     email: String,
-    image: String,
-    description: String
+    description: String,
+    image: String
 },
     { timestamps: true }
 );
 
-const Customer = mongoose.model('user', customerSchema);
+const Customer = mongoose.model('customer', customerSchema);
 
 module.exports = Customer;
