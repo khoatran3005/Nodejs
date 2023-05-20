@@ -35,5 +35,15 @@ module.exports = {
             console.log(error);
             return null;
         }
+    },
+    updateCustomerService: async (customerUpdate) => {
+        try {
+            let result = await Customer.updateOne({ _id: customerUpdate.userId }, customerUpdate, { runValidators: true })
+            return result
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+
     }
 }
